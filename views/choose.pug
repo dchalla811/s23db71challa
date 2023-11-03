@@ -1,0 +1,9 @@
+extends layout
+ 
+block content
+  h1= title
+  - let image_names = ["w1.jpeg","w2.jpeg","w3.jpeg","w4.jpeg","w5.jpeg"]
+   -for(let i=0; i<3; i++){
+    -let random= Math.floor(Math.random()*5)
+     img(src=`/images/${image_names[random]}` alt=`Image Name wallets${random}` height="400px" width="400px")
+    -}
