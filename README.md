@@ -1,8 +1,3 @@
-# f23wb71challa
-i love doddling
-https://f23wb71challa.onrender.com
+# s23db71challa
 
-Wallets 
-- wallets_type(string)
-- wallets_color(string)
-- wallets_capacity(number)
+https://s23db71challa.onrender.com/
