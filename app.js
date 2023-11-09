@@ -29,6 +29,7 @@ var usersRouter = require('./routes/users');
 var walletsRouter = require('./routes/wallets');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
+var resourceRouter = require('./routes/resources');
 var app = express();
 
 // view engine setup
@@ -46,6 +47,7 @@ app.use('/users', usersRouter);
 app.use('/wallets', walletsRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
+app.use('/resource',resourceRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
