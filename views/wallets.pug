@@ -1,25 +1,18 @@
 extends layout
- 
 block content
   h1= title
-  .container-fluid
-    .row
-      - for (let w of ad)
-        .col-sm-2
-          p WalletsType: #{w.wallets_type}
-          p WalletsColor: #{w.wallets_color}
-          p WalletsCapacity : #{w.wallets_capacity}
-         
-  br
-  h3= 'Buy'
- 
+  - let items = results
   div(class="container-fluid")
-    each w,index in ad
-      div(class="row", onclick=`buy(${index})`)
-        div(class="col-sm-2") <br>Wallets #{index}: #{w.wallets_type} Color: #{w.wallets_color} Capacity:#{w.wallets_capacity}
+    div(class="row")
+      each wallets,index in results
+        div(class="col-sm-2")
+          h6 wallet #{index + 1}
+          p #{wallets.wallets_type} 
+          p #{wallets.wallets_color} 
+          p #{wallets.wallets_capacity}
+          div(onclick=`buy(${index})`, class="btn btn-primary") Buy
+ 
   script.
-        function buy(p){
-          alert('You Purchased item ' + (p+1))    
-        }
- 
- 
+    function buy(index) {
+      alert(`You purchased item ${index + 1}`);
+    }
