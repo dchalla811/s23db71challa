@@ -1,3 +1,4 @@
+const wallets = require('../models/wallets');
 var wallet = require('../models/wallets');
 // List of all Costumes
 exports.wallet_list = async function (req, res) {
@@ -47,10 +48,28 @@ exports.wallet_create_post = async function (req, res) {
 exports.wallet_delete = function (req, res) {
     res.send('NOT IMPLEMENTED: Wallet delete DELETE ' + req.params.id);
 };
+
 // Handle Costume update form on PUT.
-exports.wallet_update_put = function (req, res) {
-    res.send('NOT IMPLEMENTED: Wallet update PUT' + req.params.id);
-};
+exports.wallet_update_put = async function (req, res) {
+    console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await wallets.findById(req.params.id)
+        // Do updates of properties
+        if (req.body.wallets_type)
+            toUpdate.wallets_type = req.body.wallets_type;
+        if (req.body.wallets_color) toUpdate.wallets_color = req.body.wallets_color;
+        if (req.body.wallets_capacity) toUpdate.wallets_capacity = req.body.wallets_capacity;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+    }
+}
+
 // VIEWS
 // Handle a show all view
 exports.wallet_view_all_Page = async function (req, res) {
