@@ -1,3 +1,41 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   form#WalletForm(action="/resource/wallets", method="POST")
+//-     div.form-group
+//-       label.walletAttr(for='wallets_type') Wallet type
+//-       input#wallets_type(type='text', name='wallets_type')
+//-     div.form-group
+//-       label.walletAttr(for='wallets_color') Wallet color
+//-       input#wallets_color(type='text', name='wallets_color')
+//-     div.form-group
+//-       label.walletAttr(for='wallets_capacity') Wallet capacity
+//-       input#wallets_capacity(type='number', name='wallets_capacity')
+//-     input(type="submit")
+//-     script.
+//-       document.forms['WalletForm'].addEventListener('submit', (event) => {
+//-         event.preventDefault();
+//-         // TODO: Show a loading indicator or message to indicate form submission is in progress
+//-         fetch(event.target.action, {
+//-           method: 'POST',
+//-           body: new URLSearchParams(new FormData(event.target))
+//-         })
+//-         .then((resp) => {
+//-           return resp.json(); // or resp.text() or whatever the server sends
+//-         })
+//-         .then((body) => {
+//-           alert("Save succeeded")
+//-           // TODO: Handle the response body as needed
+//-         })
+//-         .catch((error) => {
+//-           alert("Save failed " + error)
+//-           // TODO: Handle errors
+//-         });
+//-       });
+
+
+
 extends layout
 
 block content
@@ -33,3 +71,46 @@ block content
           // TODO: Handle errors
         });
       });
+
+  style.
+    /* Add your CSS styles here */
+    form {
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type='text'],
+    input[type='number'] {
+      width: 100%;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    input[type='submit'] {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type='submit']:hover {
+      background-color: #45a049;
+    }

@@ -1,0 +1,42 @@
+extends layout
+block content
+  h1= title
+  - let walletid = toShow._id
+  - let wallets_type = toShow.wallets_type
+  - let wallets_color = toShow.wallets_color
+  - let wallets_capacity = toShow.wallets_capacity
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{walletid}
+
+  - let actionid = "/resource/wallets/" + walletid
+  form(id='WalletForm', action= actionid, method="PUT")
+    div.form-group
+      label.walletAttr(for='wallets_type') wallets_type 
+      input#wallets_type(type='text', name='wallets_type', value= wallets_type )
+    div.form-group
+      label.walletAttr(for='wallets_color') wallets_color
+      input#wallets_color(type='text', name='wallets_color', value= wallets_color )
+    div.form-group
+      label.walletAttr(for='wallets_capacity') wallets_capacity
+      input#wallets_capacity(type='number', name='wallets_capacity', value= wallets_capacity )
+    input(type="submit")
+
+    script.
+      document.forms['WalletForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show the user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.text(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeeded")
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error)
+        });
+      });

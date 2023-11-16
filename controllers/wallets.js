@@ -110,7 +110,7 @@ res.send(`{'error': '${err}'}`);
 }
 };
 
-// Handle building the view for creating a costume.
+// Handle building the view for creating a wallet.
 // No body, no in path parameter, no query.
 // Does not need to be async
 exports.wallet_create_Page = function(req, res) {
@@ -123,4 +123,30 @@ exports.wallet_create_Page = function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
     };
-    
+
+    exports.wallet_update_Page = async function(req, res) {
+        console.log("update view for item "+req.query.id)
+        try{
+        let result = await wallet.findById(req.query.id)
+        res.render('walletupdate', { title: 'Wallet Update', toShow: result });
+        }
+        catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+        }
+        };
+        
+
+
+        exports.wallet_delete_Page = async function(req, res) {
+            console.log("Delete view for id " + req.query.id)
+            try{
+            result = await wallet.findById(req.query.id)
+            res.render('walletsdelete', { title: 'Wallet Delete', toShow: result });
+            }
+            catch(err){
+            res.status(500)
+            res.send(`{'error': '${err}'}`);
+            }
+           };
+        
