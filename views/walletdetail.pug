@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+
+  - let walletid = toShow._id
+  - let wallets_type = toShow.wallets_type
+  - let wallets_color = toShow.wallets_color
+  - let wallets_capacity = toShow.wallets_capacity
+
+  div
+    div.row
+      div(class='walletAttr mr-3') Wallet ID is:
+      div #{walletid}
+    
+    div.row
+      div(class='walletAttr mr-3') Wallet Type is:
+      div #{wallets_type}
+    
+    div.row
+      div(class='walletAttr mr-3') Wallet Size is:
+      div #{wallets_color}
+    
+    div.row
+      div(class='walletAttr mr-3') Wallet Cost is:
+      div #{wallets_capacity}

@@ -11,5 +11,8 @@ router.get('/',wallet_controller.wallet_view_all_Page);
 router.get('/wallets/:id', wallet_controller.wallet_detail);
 module.exports = router;
 
+/* GET detail wallet page */
+router.get('/detail', wallet_controller.wallet_view_one_Page);
 
-
+/* GET create costume page */
+router.get('/create', wallet_controller.wallet_create_Page);

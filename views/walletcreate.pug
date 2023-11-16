@@ -1,0 +1,31 @@
+extends layout
+block content
+h1= title
+form(id='WalletForm', action="/resource/wallet", method="POST")
+div.form-group
+label.walletAttr(for='wallets_type') Wallet type
+input#wallets_type(type='text', name='wallets_type')
+div.form-group
+label.walletAttr(for='wallets_color') Wallet color
+input#wallets_color(type='text', name='wallets_color')
+div.form-group
+label.walletAttr(for='wallets_capacity') Wallet capacity
+input#wallets_capacity(type='number', name='wallets_capacity')
+input(type="submit")
+script.
+document.forms['WalletForm'].addEventListener('submit', (event) => {
+event.preventDefault();
+// TODO do something here to show user that form is being submitted
+fetch(event.target.action, {
+method: 'POST',
+body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+}).then((resp) => {
+return resp.json(); // or resp.text() or whatever the server sends
+}).then((body) => {
+alert("Save succeded")
+// TODO handle body
+}).catch((error) => {
+// TODO handle error
+alert("Save failed " + error )
+});
+});
