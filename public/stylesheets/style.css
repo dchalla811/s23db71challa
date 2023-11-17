@@ -10,5 +10,8 @@ a {
 .walletAttr {
   background-color: rgb(15, 121, 86);
   width: 120px;
-  }
-  
+}
+
+button {
+  margin: 8px;
+}

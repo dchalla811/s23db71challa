@@ -11,8 +11,13 @@ block content
           p #{wallets.wallets_color} 
           p #{wallets.wallets_capacity}
           div(onclick=`buy(${index})`, class="btn btn-primary") Buy
- 
+          button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/wallets/update?id=${wallets._id}\")`) Update
+
   script.
-    function buy(index) {
-      alert(`You purchased item ${index + 1}`);
+    function buy(p) {
+      alert(`You purchased item`+ (p+1));
+    }
+
+    function dispatch(path) {
+      window.location.href=path
     }
