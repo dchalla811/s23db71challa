@@ -4,7 +4,8 @@ block content
   - let items = results
   div(class="container-fluid")
     div(class="row")
-      each wallets,index in results
+      a(class="btn btn-success" href="/wallets/create") Create
+      each wallets, index in results
         div(class="col-sm-2")
           h6 wallet #{index + 1}
           p #{wallets.wallets_type} 
@@ -12,6 +13,8 @@ block content
           p #{wallets.wallets_capacity}
           div(onclick=`buy(${index})`, class="btn btn-primary") Buy
           button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/wallets/update?id=${wallets._id}\")`) Update
+          a(class="btn btn-danger" href=`/wallets/delete?id=${wallets._id}`) Delete
+          a(class="btn btn-dark" href=`/wallets/detail?id=${wallets._id}`) Details
 
   script.
     function buy(p) {
@@ -20,4 +23,4 @@ block content
 
     function dispatch(path) {
       window.location.href=path
-    }
+    } 

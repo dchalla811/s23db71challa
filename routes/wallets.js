@@ -1,5 +1,14 @@
 const express = require('express');
 const router = express.Router();
+
+const secured = (req, res, next) => { 
+    if (req.user){ 
+      return next(); 
+    } 
+    req.session.returnTo = req.originalUrl; 
+    res.redirect("/login"); 
+  } 
+
 const wallet_controller = require('../controllers/wallets');
 
 
@@ -9,14 +18,14 @@ router.get('/',wallet_controller.wallet_view_all_Page);
 router.get('/wallets/:id', wallet_controller.wallet_detail);
 
 /* GET detail wallet page */
-router.get('/detail', wallet_controller.wallet_view_one_Page);
+router.get('/detail',secured, wallet_controller.wallet_view_one_Page);
 
 /* GET create costume page */
-router.get('/create', wallet_controller.wallet_create_Page);
+router.get('/create',secured, wallet_controller.wallet_create_Page);
 
-router.get('/update', wallet_controller.wallet_update_Page);
+router.get('/update',secured, wallet_controller.wallet_update_Page);
 
-router.get('/delete', wallet_controller.wallet_delete_Page);
+router.get('/delete',secured, wallet_controller.wallet_delete_Page);
 
 
 
